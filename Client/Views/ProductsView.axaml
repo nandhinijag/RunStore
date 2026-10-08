@@ -1,0 +1,38 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="using:Client.ViewModels"
+             x:Class="Client.Views.ProductsView"
+             x:DataType="vm:ProductsViewModel"
+             Background="{DynamicResource PrimaryBackgroundColor}"
+             Foreground="{DynamicResource PrimaryTextColor}">
+  <Design.DataContext>
+    <vm:ProductsViewModel></vm:ProductsViewModel>
+  </Design.DataContext>
+  <StackPanel>
+    <TextBlock Classes="h1" Text="Våra Produkter"/>
+    <Border BorderBrush="White" BorderThickness="0 0 0 1" Padding="0 50 0 5">
+      <Grid ColumnDefinitions="100,200,200,*" ShowGridLines="false">
+        <Label Content="ArtikelNr."/>
+        <Label Grid.Column="1" Content="Namn."/>
+        <Label Grid.Column="2" Content="Leverentör."/>
+        <Label Grid.Column="3" HorizontalAlignment= "Right" Content="Pris"/>
+      </Grid>
+    </Border>
+    <ItemsControl ItemsSource="{Binding Products}">
+      <ItemsControl.ItemTemplate>
+        <DataTemplate>
+          <Grid ColumnDefinitions="100,200,200,*" ShowGridLines="false">
+          <Label Content="{Binding ItemNumber}" />
+          <Label Grid.Column="1" Content="{Binding Name}" />
+          <Label Grid.Column="2" Content="{Binding SupplierName}" />
+          <Label Grid.Column="3" HorizontalAlignment= "Right" Content="{Binding Price}" />
+           </Grid>
+        </DataTemplate>
+      </ItemsControl.ItemTemplate>
+    </ItemsControl>
+  </StackPanel>
+
+</UserControl>
