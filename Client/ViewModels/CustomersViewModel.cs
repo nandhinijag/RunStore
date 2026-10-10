@@ -17,8 +17,14 @@ public partial class CustomersViewModel:ViewModelBase
     }
     private void LoadCustomer()
     {
-  
-       Customers= new ObservableCollection<Customer>(CustomerServices.ListAllCustomers());
+       try
+        {
+           Customers= new ObservableCollection<Customer>(CustomerServices.ListAllCustomers());
+        }    
+        catch(Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
     }
 
 }

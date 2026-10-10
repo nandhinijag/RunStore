@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using Client.Models;
 using Client.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 
 namespace Client.ViewModels;
 
@@ -16,10 +17,17 @@ public partial class ProductsViewModel : ViewModelBase
         PageTitle = "Våra Produkter";
         LoadProducts();
     }
+   
     private void LoadProducts()
     {
-    //    var products = ProductServices.ListAllProducts();
-    //    Products = new ObservableCollection<Product>(products);
-       Products= new ObservableCollection<Product>(ProductServices.ListAllProducts());
+        try
+        {
+            Products= new ObservableCollection<Product>(ProductServices.ListAllProducts());
+        }    
+        catch(Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+       
     }
 }

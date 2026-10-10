@@ -12,4 +12,15 @@ public record class Customer
     public string? AddressLine { get; set; }
     public string? PostalCode { get; set; }
     public string? City { get; set; }
+
+     public  void Edit()
+    {
+        Console.WriteLine("Change the Customer details");
+    }
+
+   
+    public  void Delete()
+    {
+        Console.WriteLine("Delete the Customer details");
+    }
 }
