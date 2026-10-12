@@ -6,16 +6,24 @@ namespace Client.ViewModels;
 
 public partial class MainWindowViewModel:ViewModelBase
 {  
-     private readonly HomeViewModel _homeView = new();
-     private readonly ProductsViewModel _productView = new();
-     private readonly CustomersViewModel _customersView = new();
-     private readonly OrdersViewModel _ordersView = new();
+     private readonly HomeViewModel _homeView ;
+     private readonly ProductsViewModel _productView;
+     private readonly CustomersViewModel _customersView;
+     private readonly OrdersViewModel _ordersView;
      [ObservableProperty]
     public partial ViewModelBase CurrentView{get;set;}
 
-    public MainWindowViewModel()
+    //public MainWindowViewModel(){}
+
+    public MainWindowViewModel(ProductsViewModel productViewModel,HomeViewModel homeViewModel, CustomersViewModel customersViewModel,OrdersViewModel ordersViewModel)
     {
+        
+        _productView = productViewModel;
+        _homeView = homeViewModel;
+        _customersView = customersViewModel;
+        _ordersView= ordersViewModel;
         CurrentView = _homeView;
+        
     }
     [RelayCommand] // GoToHomeCommand
     private void GoToHome()=>CurrentView = _homeView;
