@@ -2,7 +2,7 @@
 
 namespace Client.Models;
 
-public class Product
+public record Product
 {
 public string Id { get; set; } = Guid.NewGuid().ToString();
 public string? Description{ get; set; }
@@ -12,17 +12,5 @@ public required string Name { get; set; }
 public required string SupplierName { get; set; }
 public int Price { get; set; }
 
-
-
-    public  void Edit()
-    {
-        Console.WriteLine("Change the item");
-    }
-
-   
-    public  void Delete()
-    {
-        Console.WriteLine("Delete the item");
-    }
 
     }

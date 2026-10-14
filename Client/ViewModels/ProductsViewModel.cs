@@ -9,15 +9,16 @@ using CommunityToolkit.Mvvm.Input;
 
 namespace Client.ViewModels;
 
-public partial class ProductsViewModel : ViewModelBase
+public partial class ProductsViewModel : PageViewModel
 {
     private IProductService _service;
     [ObservableProperty]
     public partial ObservableCollection<Product> Products { get; set; } = [];
     public ProductsViewModel(IProductService service)
     {
-        PageTitle = "Våra Produkter";
         _service=service;
+        PageTitle = "Våra Produkter";
+        PageName = Helpers.ApplicationNameEnum.Products;
         LoadProducts();
     }
    
@@ -33,5 +34,16 @@ public partial class ProductsViewModel : ViewModelBase
         }
        
     }
+    [RelayCommand]
+    public void Edit(string id)
+    {
+        Console.WriteLine("Ändra uppgifter," +id); // can choose any unique ID
+    }
+    [RelayCommand]
+    public void Delete(string id)
+    {
+        Console.WriteLine("Ta bort produkt,"+id); // can choose any unique ID
+    }
+ 
 }
 

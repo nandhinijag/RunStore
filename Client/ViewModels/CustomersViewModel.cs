@@ -7,16 +7,18 @@ using Client.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 namespace Client.ViewModels;
 
-public partial class CustomersViewModel:ViewModelBase
+public partial class CustomersViewModel:PageViewModel
 {
     private ICustomerService _customerservice;
 
     [ObservableProperty]
     public partial ObservableCollection<Customer> Customers { get; set; } = [];
-    public CustomersViewModel(ICustomerService service)
+    public CustomersViewModel(ICustomerService customerService)
     {
+        _customerservice=customerService;
+        PageName = Helpers.ApplicationNameEnum.Customers;
         PageTitle = "Kund Lista";
-        _customerservice=service;
+        
         LoadCustomer();
         
     }
